@@ -17,7 +17,7 @@
       </div>
     </div>
     <!-- End Page Title -->
-
+    
     <!-- Blog Posts 2 Section -->
   <section id="blog-posts-2" class="blog-posts-2 section">
       
@@ -34,18 +34,19 @@
               <div class="meta-top">
                 <ul>
                   <li class="d-flex align-items-center">
-                    <a href="#">
-                      {{post.category.all|join:", "}} |
-                    </a>
+                      {% for cat in post.category.all %}
+                        <a href="">{{cat}}</a> {% if not forloop.last %},{% endif %}
+                      {% endfor %}
                   </li>
+                  &||
                   <li class="d-flex align-items-center">
-                    <a href="#"><time datetime="2022-01-01">| Published Date: {{post.published_date}}</time></a>
+                    <time datetime="2022-01-01"> Published Date: {{post.published_date|date:"d-M-Y"}}</time>
                   </li>
                 </ul>
               </div>
 
               <h2 class="title"><a href="{% url 'blog:single' pid=post.id %}">{{post.title}}</a></h2>
-              <p class="content">{{post.content}}</p>
+              <p class="content">{{post.content|truncatewords:35}}</p>
             </article>
           </div>
     {% endfor %}
