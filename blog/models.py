@@ -1,13 +1,20 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 # Create a model for blog.
+
+class Category(models.Model):
+    name = models.CharField(max_length=250)
+    
+    def __str__(self):
+        return self.name
+
 class MyPost(models.Model):
-    # author
-    # image
+    author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    image = models.ImageField(upload_to= "blog/", default="blog/default.jpg")
     title = models.CharField(max_length=200)
     content = models.TextField()
     # tag
-    # category
+    category = models.ManyToManyField(Category)
     counted_view = models.IntegerField(default=0)
     status = models.BooleanField(default=False)
     published_date = models.DateTimeField(null=True)
@@ -22,4 +29,5 @@ class MyPost(models.Model):
     def __str__(self):
         return f"{self.id}- {self.title}"
     
+
     

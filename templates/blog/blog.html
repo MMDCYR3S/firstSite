@@ -19,78 +19,37 @@
     <!-- End Page Title -->
 
     <!-- Blog Posts 2 Section -->
-    <section id="blog-posts-2" class="blog-posts-2 section">
+  <section id="blog-posts-2" class="blog-posts-2 section">
+      
+    {% for post in posts %}
+
       <div class="container">
-        <div class="row gy-5">
-          <div class="col-lg-4 col-md-6">
+        <div class="row gy-7">
+          <div class="col-md-9 col-md-9">
             <article>
               <div class="post-img">
-                <img src="{% static 'img/blog/blog-1.jpg' %}" alt="" class="img-fluid" />
+                <img src="{{post.image.url}}" alt="" class="img-fluid" />
               </div>
 
               <div class="meta-top">
                 <ul>
                   <li class="d-flex align-items-center">
-                    <a href="{% url 'blog:single-blog' %}">Sorts</a>
+                    <a href="#">
+                      {{post.category.all|join:", "}} |
+                    </a>
                   </li>
                   <li class="d-flex align-items-center">
-                    <i class="bi bi-dot"></i> <a href="{% url 'blog:single-blog' %}"><time datetime="2022-01-01">Jan 1, 2022</time></a>
+                    <a href="#"><time datetime="2022-01-01">| Published Date: {{post.published_date}}</time></a>
                   </li>
                 </ul>
               </div>
 
-              <h2 class="title"><a href="{% url 'blog:single-blog' %}">Dolorum optio tempore voluptas dignissimos</a></h2>
+              <h2 class="title"><a href="{% url 'blog:single' pid=post.id %}">{{post.title}}</a></h2>
+              <p class="content">{{post.content}}</p>
             </article>
           </div>
-          <!-- End post list item -->
-
-          <div class="col-lg-4 col-md-6">
-            <article>
-              <div class="post-img">
-                <img src="{% static 'img/blog/blog-2.jpg' %}" alt="" class="img-fluid" />
-              </div>
-
-              <div class="meta-top">
-                <ul>
-                  <li class="d-flex align-items-center">
-                    <a href="{% url 'blog:single-blog' %}">Fashion</a>
-                  </li>
-                  <li class="d-flex align-items-center">
-                    <i class="bi bi-dot"></i> <a href="{% url 'blog:single-blog' %}"><time datetime="2022-01-01">Jan 1, 2022</time></a>
-                  </li>
-                </ul>
-              </div>
-
-              <h2 class="title"><a href="{% url 'blog:single-blog' %}">Nisi magni odit consequatur autem nulla dolorem</a></h2>
-            </article>
-          </div>
-          <!-- End post list item -->
-
-          <div class="col-lg-4 col-md-6">
-            <article>
-              <div class="post-img">
-                <img src="{% static 'img/blog/blog-3.jpg' %}" alt="" class="img-fluid" />
-              </div>
-
-              <div class="meta-top">
-                <ul>
-                  <li class="d-flex align-items-center">
-                    <a href="{% url 'blog:single-blog' %}">Laws</a>
-                  </li>
-                  <li class="d-flex align-items-center">
-                    <i class="bi bi-dot"></i> <a href="{% url 'blog:single-blog' %}"><time datetime="2022-01-01">Jul 5, 2022</time></a>
-                  </li>
-                </ul>
-              </div>
-
-              <h2 class="title"><a href="{% url 'blog:single-blog' %}">Possimus soluta ut id suscipit soluta</a></h2>
-            </article>
-          </div>
-          <!-- End post list item -->
-        </div>
-        <!-- End blog posts list -->
-      </div>
-    </section>
+    {% endfor %}
+  </section>
     <!-- /Blog Posts 2 Section -->
 
     <!-- Blog Pagination Section -->
