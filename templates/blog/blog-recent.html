@@ -1,0 +1,13 @@
+<div class="recent-posts-widget widget-item">
+  <h3 class="widget-title">Recent Posts</h3>
+  {% for r_post in recent_posts.all %}
+    {% if r_post.id != current_post_id %}
+    <div class="post-item">
+      <h4><a href="{% url 'blog:single' pid=r_post.id %}">{{r_post.title}}</a></h4>
+      <time datetime="2020-01-01">{{r_post.published_date|date:"d M Y"}}</time>
+    </div>
+    {% endif %}
+  {% endfor %}
+  <!-- End recent post item -->
+
+</div>

@@ -46,8 +46,8 @@
                 </div>
                 <!-- End meta top -->
 
-                <div class="content">
-                  <p style="text-align:justify;">{{post.content|safe|linebreaksbr}}</p>
+                <div class="content" style="text-align:justify;">
+                  <p>{{post.content|safe|linebreaksbr}}</p>
                 </div>
                 <!-- End post content -->
 
@@ -225,39 +225,7 @@
             <!-- /Search Widget -->
 
             <!-- Recent Posts Widget -->
-            <div class="recent-posts-widget widget-item">
-              <h3 class="widget-title">Recent Posts</h3>
-
-              <div class="post-item">
-                <h4><a href="#">Nihil blanditiis at in nihil autem</a></h4>
-                <time datetime="2020-01-01">Jan 1, 2020</time>
-              </div>
-              <!-- End recent post item -->
-
-              <div class="post-item">
-                <h4><a href="#">Quidem autem et impedit</a></h4>
-                <time datetime="2020-01-01">Jan 1, 2020</time>
-              </div>
-              <!-- End recent post item -->
-
-              <div class="post-item">
-                <h4><a href="#">Id quia et et ut maxime similique occaecati ut</a></h4>
-                <time datetime="2020-01-01">Jan 1, 2020</time>
-              </div>
-              <!-- End recent post item -->
-
-              <div class="post-item">
-                <h4><a href="#">Laborum corporis quo dara net para</a></h4>
-                <time datetime="2020-01-01">Jan 1, 2020</time>
-              </div>
-              <!-- End recent post item -->
-
-              <div class="post-item">
-                <h4><a href="#">Et dolores corrupti quae illo quod dolor</a></h4>
-                <time datetime="2020-01-01">Jan 1, 2020</time>
-              </div>
-              <!-- End recent post item -->
-            </div>
+              {% include "blog/blog-recent.html" %}
             <!-- /Recent Posts Widget -->
 
             <!-- Tags Widget -->
