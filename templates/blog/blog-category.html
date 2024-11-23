@@ -1,0 +1,10 @@
+<div class="tags-widget widget-item">
+  <h3 class="widget-title">Category</h3>
+  <ul>
+    {% for name, count in categories.items %}
+      <li>
+        <a href="{% url 'blog:category' cat=name %}">{{name}}[{{count}}</a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>

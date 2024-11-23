@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load blog_tags %}
 {% block content %}
   <main class="main">
     <!-- Page Title -->
@@ -20,12 +21,12 @@
     
     <!-- Blog Posts 2 Section -->
   <section id="blog-posts-2" class="blog-posts-2 section">
-      
+    
     {% for post in posts %}
 
       <div class="container">
         <div class="row gy-7">
-          <div class="col-md-9 col-md-9">
+          <div class="col-md-7 col-md-6">
             <article>
               <div class="post-img">
                 <img src="{{post.image.url}}" alt="" class="img-fluid" />
@@ -35,12 +36,16 @@
                 <ul>
                   <li class="d-flex align-items-center">
                       {% for cat in post.category.all %}
-                        <a href="">{{cat}}</a> {% if not forloop.last %},{% endif %}
+                        <a href="{% url 'blog:category' cat=cat %}">{{cat}}</a> {% if not forloop.last %},{% endif %}
                       {% endfor %}
                   </li>
-                  &||
+                  &nbsp||&nbsp
                   <li class="d-flex align-items-center">
                     <time datetime="2022-01-01"> Published Date: {{post.published_date|date:"d-M-Y"}}</time>
+                  </li>
+                  &nbsp||&nbsp
+                  <li class="d-flex align-items-center">
+                    <a href="{% url 'blog:author' author_username=post.author.username %}">Author: {{post.author}}</a>
                   </li>
                 </ul>
               </div>
@@ -50,6 +55,14 @@
             </article>
           </div>
     {% endfor %}
+    <!-- Category Section -->
+      <div class="col-lg-4 sidebar">
+        <div class="widgets-container">
+          {% include 'blog/blog-search.html' %}
+          {% postcategories %}
+        </div>
+      </div>
+    <!-- /Category Section -->
   </section>
     <!-- /Blog Posts 2 Section -->
 
@@ -58,28 +71,25 @@
       <div class="container">
         <div class="d-flex justify-content-center">
           <ul>
+            {% if posts.has_previous %}
             <li>
-              <a href="#"><i class="bi bi-chevron-left"></i></a>
+              <a href="?page={{posts.previous_page_number}}"><i>&laquo;</i></a>
             </li>
+            {% endif %}
+
+            {% for post in posts.paginator.page_range %}
+              {% if posts.number == post %}
+                <li><a href="?page={{post}}" class="active">{{post}}</a></li>
+              {% else %}
+                <li><a href="?page={{post}}">{{post}}</a></li>
+              {% endif %}
+            {% endfor %}
+
+            {% if posts.has_next %}
             <li>
-              <a href="#">1</a>
+              <a href="?page={{posts.next_page_number}}"><i>&raquo;</i></a>
             </li>
-            <li>
-              <a href="#" class="active">2</a>
-            </li>
-            <li>
-              <a href="#">3</a>
-            </li>
-            <li>
-              <a href="#">4</a>
-            </li>
-            <li>...</li>
-            <li>
-              <a href="#">10</a>
-            </li>
-            <li>
-              <a href="#"><i class="bi bi-chevron-right"></i></a>
-            </li>
+            {% endif %}
           </ul>
         </div>
       </div>
