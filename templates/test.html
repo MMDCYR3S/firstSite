@@ -8,16 +8,9 @@
   <body>
     <form action="{% url 'website:test' %}" method="post">
       {% csrf_token %}
-      <div>
-        <label for="">Name:</label>
-        <input type="text" name="name" placeholder="Enter your name" />
-        <label for="">Email:</label>
-        <input type="email" name="email" placeholder="Enter your name" />
-        <label for="">Subject:</label>
-        <input type="text" name="subject" placeholder="Enter your name" />
-        <label for="">Message:</label>
-        <input type="text" name="message" placeholder="Enter your name" />
-        <div>
+      <div style="margin-top:10px;">
+        {{ form.as_p }}
+        <div style="margin-top:10px;">
           <button type="submit">Send Message</button>
         </div>
       </div>
