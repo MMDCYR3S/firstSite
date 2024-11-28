@@ -1,7 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
-# Create a model for blog.
+from django.urls import reverse
+from taggit.managers import TaggableManager 
 
+# Create a model for blog.
 class Category(models.Model):
     name = models.CharField(max_length=250)
     
@@ -13,7 +15,7 @@ class MyPost(models.Model):
     image = models.ImageField(upload_to= "blog/", default="blog/default.jpg")
     title = models.CharField(max_length=200)
     content = models.TextField()
-    # tag
+    tag = TaggableManager()
     category = models.ManyToManyField(Category)
     counted_view = models.IntegerField(default=0)
     status = models.BooleanField(default=False)
@@ -28,3 +30,7 @@ class MyPost(models.Model):
     
     def __str__(self):
         return f"{self.id}- {self.title}"
+    
+    def get_absolute_url(self):
+        return reverse("blog:single", kwargs={"pid":self.id})
+    

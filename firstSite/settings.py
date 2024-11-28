@@ -28,6 +28,36 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+# Summernote Config
+SUMMERNOTE_THEME = "bs4"
+SUMMERNOTE_CONFIG = {
+    # Using SummernoteWidget - iframe mode, default
+    'iframe': True,
+
+    # You can put custom Summernote settings
+    'summernote': {
+        # As an example, using Summernote Air-mode
+        'airMode': False,
+
+        # Change editor size
+        'width': '1000',
+        'height': '480',
+        
+        # Toolbar customization
+        # https://summernote.org/deep-dive/#custom-toolbar-popover
+        'toolbar': [
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['fontname', ['fontname']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video']],
+            ['view', ['fullscreen', 'codeview', 'help']],
+        ],
+    }
+}
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,8 +67,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    'debug_toolbar',
+    'django.contrib.humanize',
+    'django.contrib.sites',
+    'django_extensions',
+    'django.contrib.sitemaps',
+    'django_summernote',
+    
     'website.apps.WebsiteConfig',
-    'blog.apps.BlogConfig'
+    'blog.apps.BlogConfig',
+    
+    'robots',
+    'taggit',
 ]
 
 MIDDLEWARE = [
@@ -49,6 +90,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'firstSite.urls'
@@ -68,6 +110,16 @@ TEMPLATES = [
         },
     },
 ]
+
+# Don't allow to show the host name.
+ROBOTS_USE_HOST = False
+ROBOTS_USE_SITEMAP = False
+
+# X-Frame Options Set
+X_FRAME_OPTIONS = "SAMEORIGIN"
+
+# Define Site ID
+SITE_ID = 1
 
 WSGI_APPLICATION = 'firstSite.wsgi.application'
 
@@ -99,6 +151,11 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
+]
+
+# Internal IPs
+INTERNAL_IPS = [
+    "127.0.0.1",
 ]
 
 

@@ -1,3 +1,4 @@
+{% load humanize %}
 <div class="recent-posts-widget widget-item">
   <h3 class="widget-title">Recent Posts</h3>
   {% for post in posts %}
@@ -7,7 +8,9 @@
         <img style="max-width: 100px; margin-bottom: 5px;" src="{{post.image.url}}" alt="{{post.image.url}}" />
       </div>
       <h4>{{post.title}}</a></h4>
-      <time datetime="2020-01-01">{{post.published_date|date:"d-M-Y"}}</time>
+      <time>{{post.published_date|date:"d-M-Y"}}</time>
+      <!-- Django Humanize in the following line -->
+      <p>{{post.published_date|naturaltime}}</p>
     </div>
   {% endfor %}
   <!-- End recent post item -->

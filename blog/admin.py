@@ -1,10 +1,11 @@
 from django.contrib import admin
 from blog.models import MyPost, Category
+from django_summernote.admin import SummernoteModelAdmin
 
 # Register models and use them.
 #@admin.register(Category)
 #@admin.register(MyPost)
-class MyPostAdmin(admin.ModelAdmin):
+class MyPostAdmin(SummernoteModelAdmin):
     date_hierarchy = "created_date" # Show date time above database.
     empty_value_display = "-" # Show - if value of parameters are null.
     # fields = () # Only shows title or list of parameters we write there
@@ -13,6 +14,7 @@ class MyPostAdmin(admin.ModelAdmin):
     list_filter = ("status",)
     #ordering = ("title",)
     search_fields = ("title", "content")
+    summernote_fields = ("content",)
     
 admin.site.register(MyPost, MyPostAdmin)
 admin.site.register(Category)
