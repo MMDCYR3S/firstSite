@@ -61,6 +61,7 @@ SUMMERNOTE_CONFIG = {
 # Application definition
 
 INSTALLED_APPS = [
+    'multi_captcha_admin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -74,6 +75,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'django.contrib.sitemaps',
     'django_summernote',
+    'captcha',
     
     'website.apps.WebsiteConfig',
     'blog.apps.BlogConfig',
@@ -92,6 +94,11 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
+
+# Settings for multi captcha admin
+MULTI_CAPTCHA_ADMIN = {
+    "engine" : "simple-captcha",
+}
 
 ROOT_URLCONF = 'firstSite.urls'
 
