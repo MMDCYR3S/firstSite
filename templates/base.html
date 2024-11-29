@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Index - Active Bootstrap Template</title>
+    <title>FUCKING &#128512;</title>
     <meta name="description" content="" />
     <meta name="keywords" content="" />
 
@@ -43,22 +43,32 @@
         <a href="{% url 'website:index' %}" class="logo d-flex align-items-center">
           <!-- Uncomment the line below if you also wish to use an image logo -->
           <!-- <img src=" {% static 'img/logo.png" alt=""> -->
-          <h1 class="sitename">My FUCKING Website :)</h1>
+          <h1 class="sitename">My FUCKING Website &#128512;</h1>
         </a>
 
         <nav id="navmenu" class="navmenu">
           <ul>
+            
             <li>
-              <a href="{% url 'website:index' %}" class="active">Home</a>
+              <a href="{% url 'website:index' %}"  
+              class="{% if request.resolver_match.url_name == 'index' %}
+              active{% endif %}" >Home</a>
+            </li>
+            
+            <li>
+              <a href="{% url 'website:about' %}" 
+              class="{% if request.resolver_match.url_name == 'about' %}
+              active{% endif %}">About</a>
             </li>
             <li>
-              <a href="{% url 'website:about' %}">About</a>
+              <a href="{% url 'blog:blog' %}" 
+              class="{% if request.resolver_match.url_name == 'blog' %}
+              active{% endif %}">Blog</a>
             </li>
             <li>
-              <a href="{% url 'blog:blog' %}">Blog</a>
-            </li>
-            <li>
-              <a href="{% url 'website:contact' %}">Contact</a>
+              <a href="{% url 'website:contact' %}" 
+              class="{% if request.resolver_match.url_name == 'contact' %}
+              active{% endif %}">Contact</a>
             </li>
           </ul>
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -82,7 +92,7 @@
               <h3 class="widget-heading">About Us</h3>
               <p class="mb-4">There live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
               <p class="mb-0">
-                <a href="#" class="btn-learn-more">Learn more</a>
+                <a href="{% url 'website:about' %}" class="btn-learn-more">Learn more</a>
               </p>
             </div>
           </div>
@@ -91,24 +101,18 @@
               <h3 class="widget-heading">Navigation</h3>
               <ul class="list-unstyled float-start me-5">
                 <li>
-                  <a href="#">Overview</a>
+                  <a href="{% url 'website:index' %}">Overview</a>
                 </li>
                 <li>
-                  <a href="#">About Us</a>
-                </li>
-                <li>
-                  <a href="#">Find Buyers</a>
+                  <a href="{% url 'website:about' %}">About Us</a>
                 </li>
               </ul>
               <ul class="list-unstyled float-start">
                 <li>
-                  <a href="#">Overview</a>
+                  <a href="{% url 'website:index' %}">Overview</a>
                 </li>
                 <li>
-                  <a href="#">About Us</a>
-                </li>
-                <li>
-                  <a href="#">Services</a>
+                  <a href="{% url 'website:about' %}">About Us</a>
                 </li>
               </ul>
             </div>
@@ -170,7 +174,7 @@
 
         <div class="copyright d-flex flex-column flex-md-row align-items-center justify-content-md-between">
           <p>
-            © <span>Copyright</span> <strong class="px-1 sitename">Active.</strong> <span>All Rights Reserved</span>
+            © <span>Copyright</span> <strong class="px-1 sitename">My FUCKING Website &#128512;</strong> <span>All Rights Reserved</span>
           </p>
           <div class="credits">
             <!-- All the links in the footer should remain intact. -->

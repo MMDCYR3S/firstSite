@@ -2,9 +2,12 @@ from django.shortcuts import render , HttpResponse, HttpResponseRedirect
 from django.contrib import messages
 from website.models import Contact
 from website.forms import *
+from blog.models import MyPost
 
 def index_view(request):
-    return render(request, 'website/index.html')
+    posts = MyPost.objects.filter(status=True).order_by("-published_date")[:3]
+    context = {"posts": posts}
+    return render(request, 'website/index.html', context)
 
 def about_view(request):
     return render(request, 'website/about.html')

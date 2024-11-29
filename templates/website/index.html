@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load humanize %}
 {% block content %} 
 <main class="main">
 
@@ -58,19 +59,19 @@
           </div>
 
           <div class="offset-md-0 offset-lg-1 col-sm-12 col-md-5 col-lg-5 col-xl-4" data-aos="fade-up">
-            <div class="px-3">
+            <div class="px-3" style="text-align: justify;">
               <span class="content-subtitle">Deepest Thought</span>
               <h2 class="content-title text-start">
                 I don't know what the FUCK am I doing here! I just know that
-                I'm going to make this FUCKING website good :)
+                I'm going to make this website FUCKING good!!! &#128513;
               </h2>
               <p class="lead">
-                A small river named Duden flows by their place and supplies it
-                with the necessary regelialia. It is a paradisematic country.
+                For the first session, I make the main website. Then, I went for
+                The blog and make it FUCKING complete. &#128521;
               </p>
               <p class="mb-5">
-                The Big Oxmox advised her not to do so, because there were
-                thousands of bad Commas, wild Question Marks and devious Semikoli.
+                The session is still incomplete, but I'll make sure to
+                change and customize it to whatever the FUCKING I want!
               </p>
               <p>
                 <a href="#" class="btn-get-started">Get Started</a>
@@ -193,19 +194,21 @@
     <div class="container">
 
       <div class="row gy-4">
+        {% for post in posts %}
         <div class="col-md-6 col-lg-4">
           <div class="post-entry" data-aos="fade-up" data-aos-delay="100">
-            <a href="#" class="thumb d-block"><img src=" {% static 'img/img_h_4.jpg' %}" alt="Image" class="img-fluid rounded"></a>
+            <a href="{% url 'blog:single' pid=post.id %}" class="thumb d-block"><img src="{{post.image.url}}" alt="Image" class="img-fluid rounded"></a>
 
             <div class="post-content">
               <div class="meta">
-                <a href="#" class="cat">Development</a> •
-                <span class="date">July 20, 2020</span>
+                {% for cate in post.category.all %}
+                <a href="{% url 'blog:category' cat=cate %}" class="cat">{{cate}}</a> •
+                {% endfor %}
+                <span class="date">{{post.published_date|naturalday}}</span>
               </div>
-              <h3><a href="#">There live the blind texts they live</a></h3>
+              <h3><a href="{% url 'blog:single' pid=post.id %}">{{post.title}}</a></h3>
               <p>
-                Far far away, behind the word mountains, far from the countries
-                Vokalia and Consonantia, there live the blind texts.
+                {{post.content|truncatewords:15}}
               </p>
 
               <div class="d-flex author align-items-center">
@@ -213,70 +216,16 @@
                   <img src=" {% static 'img/team/team-3.jpg' %}" alt="Image" class="img-fluid rounded-circle">
                 </div>
                 <div class="author-name">
-                  <strong class="d-block">Winston Gold</strong>
-                  <span class="">Lead Product Designer</span>
+                  <strong class="d-block">{{post.author}}</strong>
+                  <span class="">{{post.author.get_full_name}}</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
-        <div class="col-md-6 col-lg-4">
-          <div class="post-entry" data-aos="fade-up" data-aos-delay="200">
-            <a href="#" class="thumb d-block"><img src=" {% static 'img/img_h_2.jpg' %}" alt="Image" class="img-fluid rounded"></a>
-
-            <div class="post-content">
-              <div class="meta">
-                <a href="#" class="cat">Development</a> •
-                <span class="date">July 20, 2020</span>
-              </div>
-              <h3><a href="#">There live the blind texts they live</a></h3>
-              <p>
-                Far far away, behind the word mountains, far from the countries
-                Vokalia and Consonantia, there live the blind texts.
-              </p>
-
-              <div class="d-flex author align-items-center">
-                <div class="pic">
-                  <img src=" {% static 'img/team/team-2.jpg' %}" alt="Image" class="img-fluid rounded-circle">
-                </div>
-                <div class="author-name">
-                  <strong class="d-block">Winston Gold</strong>
-                  <span class="">Lead Product Designer</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4">
-          <div class="post-entry" data-aos="fade-up" data-aos-delay="300">
-            <a href="#" class="thumb d-block"><img src=" {% static 'img/img_h_3.jpg' %}" alt="Image" class="img-fluid rounded"></a>
-
-            <div class="post-content">
-              <div class="meta">
-                <a href="#" class="cat">Development</a> •
-                <span class="date">July 20, 2020</span>
-              </div>
-              <h3><a href="#">There live the blind texts they live</a></h3>
-              <p>
-                Far far away, behind the word mountains, far from the countries
-                Vokalia and Consonantia, there live the blind texts.
-              </p>
-
-              <div class="d-flex author align-items-center">
-                <div class="pic">
-                  <img src=" {% static 'img/team/team-1.jpg' %}" alt="Image" class="img-fluid rounded-circle">
-                </div>
-                <div class="author-name">
-                  <strong class="d-block">Winston Gold</strong>
-                  <span class="">Lead Product Designer</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        {% endfor %}
       </div>
+
     </div>
   </section><!-- /Blog Posts Section -->
 
