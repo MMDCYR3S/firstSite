@@ -79,6 +79,7 @@ INSTALLED_APPS = [
     
     'website.apps.WebsiteConfig',
     'blog.apps.BlogConfig',
+    'userprofile.apps.UserprofileConfig',
     
     'robots',
     'taggit',

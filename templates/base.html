@@ -13,6 +13,11 @@
     <link href="{% static 'img/favicon.png' %}" rel="icon" />
     <link href="{% static 'img/apple-touch-icon.png' %}" rel="apple-touch-icon" />
 
+    <!-- Login Files -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin />
@@ -48,7 +53,6 @@
 
         <nav id="navmenu" class="navmenu">
           <ul>
-            
             <li>
               <a href="{% url 'website:index' %}"  
               class="{% if request.resolver_match.url_name == 'index' %}
@@ -70,6 +74,18 @@
               class="{% if request.resolver_match.url_name == 'contact' %}
               active{% endif %}">Contact</a>
             </li>
+            {% if request.user.is_authenticated %}
+              <li>
+                <a href="{% url 'user:logout' %}">Logout</a>
+              </li>
+              <li style="color: green;"><a>Welcome {{request.user.username}}</a></li>
+            {% else %}
+              <li>
+                <a href="{% url 'user:login' %}"  
+                class="{% if request.resolver_match.url_name == 'login' %}
+                active{% endif %}" >Login/Signup</a>
+              </li>
+            {% endif %}
           </ul>
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
@@ -202,6 +218,12 @@
     <script src="{% static 'vendor/glightbox/js/glightbox.min.js' %}"></script>
     <script src="{% static 'vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
     <script src="{% static 'vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+
+    <!-- Login JS Files -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/popper.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/main_login.js' %}"></script>
 
     <!-- Main JS File -->
     <script src="{% static 'js/main.js' %}"></script>

@@ -114,30 +114,38 @@
                 <p>Your email address will not be published. Required fields are marked *</p>
                 <input type="hidden" name="post" value="{{post.id}}">
 
-                <div class="row">
-                  <div class="col-md-6 form-group">
-                    <input name="name" type="text" class="form-control" placeholder="Your Name*" />
+                {% if request.user.is_authenticated %}
+                  <input type="hidden" name="name" value="{{request.user.first_name}}">
+                  <input type="hidden" name="email" value="{{request.user.email}}">
+                {% else %}
+                  <div class="row">
+                    <div class="col-md-6 form-group">
+                      <input name="name" type="text" class="form-control" placeholder="Your Name*" />
+                    </div>
+
+                    <div class="col-md-6 form-group">
+                      <input name="email" type="text" class="form-control" placeholder="Your Email*" />
+                    </div>
+                  </div>
+                {% endif %}
+
+                  <div class="row">
+                    <div class="col form-group">
+                      <input name="subject" type="text" class="form-control" placeholder="Your Subject" />
+                    </div>
                   </div>
 
-                  <div class="col-md-6 form-group">
-                    <input name="email" type="text" class="form-control" placeholder="Your Email*" />
+                  <div class="row">
+                    <div class="col form-group">
+                      <textarea name="message" class="form-control" placeholder="Your Comment*"></textarea>
+                    </div>
                   </div>
-                </div>
+                
 
-                <div class="row">
-                  <div class="col form-group">
-                    <input name="subject" type="text" class="form-control" placeholder="Your Subject" />
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col form-group">
-                    <textarea name="message" class="form-control" placeholder="Your Comment*"></textarea>
-                  </div>
-                </div>
                 <div class="text-center">
                   <button type="submit" class="btn btn-primary">Post Comment</button>
                 </div>
+
                 {% if messages %}
                   <ul class="messages">
                     {% for message in messages %}

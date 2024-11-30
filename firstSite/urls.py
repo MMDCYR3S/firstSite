@@ -33,6 +33,7 @@ urlpatterns = [
     # Include urlpatterns of applications
     path('', include('website.urls')),
     path('blog/', include('blog.urls')),
+    path('user/', include('userprofile.urls')),
     path('sitemaps.xml', sitemap, {"sitemaps": sitemaps},
          name="django.contrib.sitemaps.views.sitemap"),
     path("robots.txt", include('robots.urls')),
