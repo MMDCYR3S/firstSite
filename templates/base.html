@@ -78,7 +78,7 @@
               <li>
                 <a href="{% url 'user:logout' %}">Logout</a>
               </li>
-              <li style="color: green;"><a>Welcome {{request.user.username}}</a></li>
+              <li style="color: green;" ><a>Welcome {{request.user.username.upper}}</a></li>
             {% else %}
               <li>
                 <a href="{% url 'user:login' %}"  
